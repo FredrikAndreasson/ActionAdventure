@@ -4,20 +4,20 @@
 
 HealthUI::HealthUI()
 {
-	myHealthBar = sf::RectangleShape(sf::Vector2f(110.0f, 13.0f));
-	myInitialHealthHeight = 13.0f;
-	myInitialHealthWidth = 110.0f;
+	myInitialHealthHeight = 12.0f;
+	myInitialHealthWidth = 105.0f;
+	myHealthBar = sf::RectangleShape(sf::Vector2f(myInitialHealthWidth, myInitialHealthHeight));
 
-	myManaBar = sf::RectangleShape(sf::Vector2f(110.0f, 11.0f));
-	myInitialManaHeight = 11.0f;
-	myInitialManaWidth = 110.0f;
+	myInitialManaHeight = 7.0f;
+	myInitialManaWidth = 105.0f;
+	myManaBar = sf::RectangleShape(sf::Vector2f(myInitialManaWidth, myInitialManaHeight));
 
 	myHealthUIShape = sf::RectangleShape(sf::Vector2f(190.0f, 61.0f));
 
 	//Set positions
 	myHealthUIShape.setPosition(10, 10);
-	myHealthBar.setPosition(30, 30);
-	myManaBar.setPosition(30, 50);
+	myHealthBar.setPosition(75, 31);
+	myManaBar.setPosition(75, 46);
 
 	//Set initial colours
 	myHealthBar.setFillColor(sf::Color::Red);

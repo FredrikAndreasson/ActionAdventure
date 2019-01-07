@@ -5,8 +5,6 @@ Player::Player(int someHealth, int someDamage, int someSpellPower, int someMana,
 {
 	//Define player size
 	myShape = sf::RectangleShape(sf::Vector2f(64.0f, 64.0f));
-	myHealthUIShape = sf::RectangleShape(sf::Vector2f(190.0f, 61.0f));
-	myHealthUIShape.setPosition(10, 10);
 	//Give values to stats
 	myHealth = someHealth;
 	myDamage = someDamage;
@@ -14,6 +12,7 @@ Player::Player(int someHealth, int someDamage, int someSpellPower, int someMana,
 	myMana = someMana;
 	myManaRegen = someManaRegen;
 	myLives = someLives;
+	mySpeed = 0.1f;
 }
 
 
@@ -25,19 +24,19 @@ void Player::Update()
 	//Keybinds
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
-		myShape.move(0, -0.3f);
+		myShape.move(0, -mySpeed);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		myShape.move(-0.3f, 0);
+		myShape.move(-mySpeed, 0);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		myShape.move(0, 0.3f);
+		myShape.move(0, mySpeed);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		myShape.move(0.3f, 0);
+		myShape.move(mySpeed, 0);
 	}
 
 }

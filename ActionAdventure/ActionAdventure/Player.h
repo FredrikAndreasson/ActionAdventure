@@ -9,7 +9,6 @@ public:
 	~Player();
 
 	sf::RectangleShape myShape;
-	sf::RectangleShape myHealthUIShape;
 
 	void Update();
 
@@ -30,12 +29,14 @@ public:
 	void SetLives(int aValue);
 private:
 	//Stats
+	float mySpeed;
 	float myHealth;
 	float myMana;
 	float myManaRegen;
 	int myDamage;
 	int mySpellPower;
 	int myLives;
+	
 
 	//Items & spells
 	mySpells mySpellBook[6];
