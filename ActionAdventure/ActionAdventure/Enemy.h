@@ -7,6 +7,6 @@ public:
 	Enemy();
 	~Enemy();
 
-	sf::CircleShape myShape;
+	sf::RectangleShape myShape;
 };
 #endif

@@ -4,8 +4,7 @@
 
 Enemy::Enemy()
 {
-	myShape = sf::CircleShape(100.f);
-	myShape.setFillColor(sf::Color::Red);
+	myShape = sf::RectangleShape(sf::Vector2f(32.0f, 32.0f));
 }
 
 
