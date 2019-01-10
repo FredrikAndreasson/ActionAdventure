@@ -11,11 +11,9 @@ public:
 	void Update(int aRow, float someDeltaTime);
 
 	sf::IntRect myUvRect;
-	int myImageLow;
-	int myImageHigh;
+	sf::Vector2u myCurrentImage;
 private:
 	sf::Vector2u myImageCount;
-	sf::Vector2u myCurrentImage;
 
 	float myTotalTime;
 	float mySwitchTime;

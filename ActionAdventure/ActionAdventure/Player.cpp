@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Player.h"
 
-Player::Player(int someHealth, int someDamage, int someSpellPower, int someMana, int someManaRegen, int someLives)
+Player::Player(float someHealth, int someDamage, int someSpellPower, float someMana, float someManaRegen, int someLives)
 {
 	//Define player size
 	myShape = sf::RectangleShape(sf::Vector2f(64.0f, 64.0f));
@@ -13,14 +13,54 @@ Player::Player(int someHealth, int someDamage, int someSpellPower, int someMana,
 	myManaRegen = someManaRegen;
 	myLives = someLives;
 	mySpeed = 0.1f;
+	myAnimationState = AnimationState::WalkUp;
+	myFireRate = 100;
 }
 
 
 Player::~Player()
 {}
 
-void Player::Update()
+void Player::Update(sf::Vector2f aMousePosition)
 {
+	//Animation handling
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		{
+			myAnimationState = AnimationState::Idle;
+		}
+		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+		{
+			myAnimationState = AnimationState::WalkUp;
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		{
+			myAnimationState = AnimationState::WalkDown;
+		}
+		else { myAnimationState = AnimationState::Idle; }
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		myAnimationState = AnimationState::WalkLeft;
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		myAnimationState = AnimationState::WalkRight;
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	{
+		myAnimationState = AnimationState::Idle;
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	{
+		myAnimationState = AnimationState::WalkUp;
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	{
+		myAnimationState = AnimationState::WalkDown;
+	}
+	else {	myAnimationState = AnimationState::Idle;}
 	//Keybinds
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
@@ -38,7 +78,18 @@ void Player::Update()
 	{
 		myShape.move(mySpeed, 0);
 	}
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && myFireRate < 0)
+	{
+		float tempAngle = atan2(aMousePosition.y - myShape.getPosition().y, aMousePosition.x - myShape.getPosition().x);
+		Bullet *tempBullet = new Bullet(myShape.getPosition().x, myShape.getPosition().y, sf::RectangleShape(sf::Vector2f(10.0f, 10.0f)),tempAngle, 0.2f);
 
+		myBulletVector.push_back(tempBullet);
+		myFireRate = 300;
+	}
+	else
+	{
+		myFireRate--;
+	}
 }
 
 float Player::GetHealth()

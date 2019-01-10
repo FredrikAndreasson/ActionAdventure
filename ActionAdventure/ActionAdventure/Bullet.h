@@ -4,11 +4,13 @@
 class Bullet
 {
 public:
-	Bullet();
+	Bullet(float anX, float aY, sf::RectangleShape aRectangle, float anAngle, float aSpeed);
 	~Bullet();
-	void Init(float anX, float aY, sf::RectangleShape aRectangle);
 	void Update();
 
 	sf::RectangleShape myShape;
+
+	float myAngle;
+	float mySpeed;
 };
 #endif

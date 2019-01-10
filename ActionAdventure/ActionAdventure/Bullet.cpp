@@ -2,8 +2,13 @@
 #include "Bullet.h"
 
 
-Bullet::Bullet()
+Bullet::Bullet(float anX, float aY, sf::RectangleShape aRectangle, float anAngle, float aSpeed)
 {
+	myShape = aRectangle;
+	myShape.setFillColor(sf::Color::Blue);
+	myShape.setPosition(anX, aY);
+	myAngle = anAngle;
+	mySpeed = aSpeed;
 }
 
 
@@ -11,14 +16,8 @@ Bullet::~Bullet()
 {
 }
 
-void Bullet::Init(float anX, float aY, sf::RectangleShape aRectangle)
-{
-	myShape = aRectangle;
-	myShape.setFillColor(sf::Color::Blue);
-	myShape.setPosition(anX, aY);
-}
-
 void Bullet::Update()
 {
-	myShape.move(-0.1f, 0.0f);
+	myShape.move(cos(myAngle) * mySpeed, 0);
+	myShape.move(0, sin(myAngle) * mySpeed);
 }
