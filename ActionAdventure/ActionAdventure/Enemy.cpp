@@ -6,7 +6,7 @@
 Enemy::Enemy(float aSpeed, float someHealth, int someDamage)
 {
 	myShape = sf::RectangleShape(sf::Vector2f(32.0f, 32.0f));
-	myShape.setPosition(300, 200);
+	myShape.setPosition(500, 500);
 	myAcceleration = aSpeed;
 	myHealth = someHealth;
 	myDamage = someDamage;

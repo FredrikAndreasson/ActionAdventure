@@ -15,6 +15,7 @@ Player::Player(float someHealth, int someDamage, int someSpellPower, float someM
 	mySpeed = 0.1f;
 	myAnimationState = AnimationState::WalkUp;
 	myFireRate = 100;
+	myShape.setOrigin(32.0f, 32.0f);
 }
 
 
